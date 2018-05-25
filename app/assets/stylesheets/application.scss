@@ -1,0 +1,18 @@
+@import "bootstrap";
+.logo-home {
+  background-image: url('img/russia2018logo.jpg');
+  background-size: cover;
+  border: solid #f0efef;
+}
+
+.login-form {
+  margin-top: 90px;
+}
+
+.login-form-right {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border: solid #f0efef;
+  border-left: none;
+}

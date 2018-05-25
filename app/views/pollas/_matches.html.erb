@@ -1,0 +1,27 @@
+<%= form_for @polla do |f|  %>
+  <%= f.fields_for :results do |result| %>
+    <% if row_div(4,result.index) %>
+      <div class="row">
+    <%end %>
+    <% if @group 
+        <div class="card">
+          <div class="card-header">
+            <%= "Grupo #{@group}" %> 
+          </div>
+            <div class="row">
+	      <div class="col-lg-8"> 
+                <p><%= match.title %></p>
+	      </div>
+	      <div class="col-lg-4">
+	        <%= result.hidden_field :resultable_id %>
+	        <%= result.hidden_field :resultable_type %>
+	        <div class="form-group">
+	          <%= result.select :result, match.result_options, {}, class: "form-control" %>
+	        </div>
+	      </div>
+	    </div>
+        </div>
+      </div>
+    <%end%>
+  <%= f.submit "Submit" %>
+<%end%>
