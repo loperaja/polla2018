@@ -3,7 +3,7 @@ class Polla < ApplicationRecord
   
   accepts_nested_attributes_for :results
 
-  WIZARD_STEPS = {"primera_fase" => 1, "posiciones" => 2, "octavoss" => 2, "cuartoss" => 3, "semis" => 4}
+  WIZARD_STEPS = {"primera_fase" => 1, "posiciones" => 2, "octavos" => 2, "cuartos" => 3, "semis" => 4}
   enum wizard_step: WIZARD_STEPS.keys
 
 
