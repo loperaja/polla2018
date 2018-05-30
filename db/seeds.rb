@@ -18,19 +18,19 @@ GROUPS = {
  }
 
 STAGES = {
- "OCTAVOS" => {points: 2, num_teams: 16},
- "CUARTOS" => {points: 5, num_teams: 8},
- "SEMIS" => {points: 7, num_teams: 4},
- "CAMPEON" => {points: 10, num_teams: 16},
- "SEGUNDO" => {points: 10, num_teams: 1},
- "TERCERO" => {points: 10, num_teams: 1},
- "CUARTO" => {points: 10, num_teams: 1},
- "GOLADOR" => {points: 1, num_teams: 1},
- "MASGOLEADO" => {points: 1, num_teams: 1}
+ "OCTAVOS" => {points: 2, num_teams: 16, step: "octavos"},
+ "CUARTOS" => {points: 5, num_teams: 8, step: "cuartos"},
+ "SEMIS" => {points: 7, num_teams: 4, step: "semis"},
+ "CAMPEON" => {points: 10, num_teams: 1, step: "semis"},
+ "SEGUNDO" => {points: 10, num_teams: 1, step: "semis"},
+ "TERCERO" => {points: 10, num_teams: 1, step: "semis"},
+ "CUARTO" => {points: 10, num_teams: 1, step: "semis"},
+ "GOLEADOR" => {points: 1, num_teams: 1, step: "goleador"},
+ "MASGOLEADO" => {points: 1, num_teams: 1, step: "goleador"}
 }
-GROUPS.keys.each{|group| (1..4).to_a.each{|n| STAGES["#{group}#{n}"] = {:points => 1, :num_teams => 1 }}}
+GROUPS.keys.each{|group| (1..4).to_a.each{|n| STAGES["#{group}#{n}"] = {:points => 1, :num_teams => 1, :step => "posiciones"}}}
 
-STAGES.each{|stage, det| Round.create!(name: stage, points: det[:points], :num_teams => det[:num_teams])}
+STAGES.each{|stage, det| Round.create!(name: stage, points: det[:points], :num_teams => det[:num_teams], :step => det[:step])}
 
 GROUPS.each do |group, teams|
   teams.each{|team| Team.create!(name: team, group: group)}
