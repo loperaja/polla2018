@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-  def row_div(size, index)
+  def match_row_div(size, index)
+    per_group = Result::MATCHES_PER_GROUP
     row = false
-    if index == 0
-      row = true
-    elsif(index % (12/size) == 0)
-      row = true
+    numcols = 12/size
+    if index % per_group == 0
+      row = (((index/per_group) % numcols) == 0)
     end
     return row
   end
