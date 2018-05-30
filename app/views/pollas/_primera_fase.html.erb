@@ -1,1 +1,37 @@
-iii
+<%= form_for @polla do |f|  %>
+<%= f.hidden_field :wizard_step, value: f.object.next_step %>
+  <%= f.fields_for :results do |result| %>
+    <% if match_row_div(4,result.index) %>
+      <div class="row">
+    <%end %>
+    <% if result.index % Result::MATCHES_PER_GROUP == 0 %>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <%= "Grupo #{result.object.resultable.group}" %> 
+          </div>
+	  <div class="container"><br/>
+    <% end %>
+          <div class="row">
+	    <div class="col-lg-7"> 
+              <p><%= result.object.resultable.title %></p>
+	    </div>
+	    <div class="col-lg-5">
+	      <%= result.hidden_field :resultable_id %>
+	      <%= result.hidden_field :resultable_type %>
+	      <div class="form-group">
+	        <%= result.select :result, result.object.resultable.result_options, {}, class: "form-control" %>
+	      </div>
+	    </div>
+	  </div>
+    <% if ((result.index + 1) % Result::MATCHES_PER_GROUP == 0 )%>
+        </div>
+      </div>
+      </div>
+    <% end %>
+    <% if match_row_div(4,result.index+1) %>
+    </div><br/>
+    <% end %>
+  <%end%>
+  <%= f.submit "Submit" %>
+<%end%>
