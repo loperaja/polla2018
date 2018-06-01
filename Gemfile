@@ -55,3 +55,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+gem 'pry'
+gem "capistrano", group: :development
+
+# rails specific capistrano funcitons
+gem 'capistrano-rails'
+
+# integrate bundler with capistrano
+gem 'capistrano-bundler'
+
+# if you are using RVM
+gem 'capistrano-rbenv'
