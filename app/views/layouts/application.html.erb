@@ -11,11 +11,12 @@
 
   <body>
     <nav class="navbar sticky-top navbar-light" style="background-color:#50292a">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href=<%= home_index_path%>>
         <%= image_tag("polloskiLogo.png", height: 32, width: 94) %>
       </a>
     </nav>
     <div class="container-fluid">
+      <%= render partial: '/shared/flash_msg' %>
       <%= yield %>
     </div>
   </body>
