@@ -1,0 +1,14 @@
+<br/><br/>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class=<%="col-lg-#{size}"%>>
+      <% if f.object.new_record? %>
+        <a href=<%= "?step=#{f.object.previous_step}"%> class="btn btn-dark">Volver</a>
+      <% else  %>
+        <%= link_to "Volver", edit_polla_path(f.object, step: f.object.previous_step), :class => "btn btn-dark" %>
+      <%end%>
+      <%= f.submit "Siguiente", class: "btn btn-primary float-lg-right"%>
+    </div>
+  </div>
+</div>
+<br/><br/>
