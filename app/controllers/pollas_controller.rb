@@ -1,33 +1,54 @@
 class PollasController < ApplicationController
   before_action :set_polla, :only => [:edit, :update]
+  before_action :user_polla_validation, :except => [:new, :create]
   before_action :set_wizard_step, :only => [:edit]
 
   def new
-    @polla = Polla.new
-    set_wizard_step
-    case  @polla.wizard_step
-    when "primera_fase"
-      Match.all.each{|match| @polla.results.build(resultable_id: match.id, resultable_type: match.class.to_s)}
-    when "posiciones"
-      Round.where(step: @polla.wizard_step).each{|posit| @polla.results.build(resultable_id: posit.id, resultable_type: posit.class.to_s)}
-    end
+    @polla = current_user.pollas.new
+    results_builder
   end
 
 
   def create
-
+    @polla = current_user.pollas.new(polla_attributes)
+    if @polla.save
+      redirect_to edit_polla_path(@polla.id)
+    else 
+      @polla.wizard_step = @polla.previous_step
+      round_details
+      render 'new'
+    end
   end
 
 
   def edit
-
+    results_builder
   end
 
   def update
-
+    if @polla.update_attributes(polla_attributes)
+      if @polla.finish
+        redirect_to home_index_path
+      else
+        results_builder
+        render 'edit'
+      end
+    else
+      render 'edit'
+    end
   end
 
   private
+
+  def polla_attributes
+  params.require(:polla)
+        .permit(:id,
+	        :wizard_step,
+	        :finish,
+	        :name, 
+		:team_ids => [], 
+		:results_attributes => [:id, :resultable_id, :resultable_type, :result, :_destroy])
+  end
 
   def set_polla
     @polla = Polla.find(params[:id])
@@ -35,6 +56,27 @@ class PollasController < ApplicationController
 
   def set_wizard_step
     @polla.wizard_step = params[:step].present? ? params[:step] : @polla.wizard_step
+  end
+
+  def round_details
+   if @polla.wizard_step == "primera_fase"
+     @round = Match.order(:id)
+   else
+     @round =  Round.where(step: @polla.wizard_step)
+   end
+  end
+
+  def user_polla_validation
+    redirect_to dashboards_path if current_user != @polla.user 
+  end
+
+  def results_builder
+    set_wizard_step
+    round_details
+    case  @polla.wizard_step
+    when "primera_fase", "posiciones", "final"
+      @round.each{|r| @polla.results.find_or_initialize_by(resultable_id: r.id, resultable_type: r.class.to_s)}
+    end
   end
 
 end
