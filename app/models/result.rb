@@ -2,6 +2,8 @@ class Result < ApplicationRecord
 
   belongs_to :resultable, polymorphic: true
   belongs_to :polla
+  
+  validates_uniqueness_of :result, scope: [:resultable_id, :polla_id, :resultable_type]
 
   MATCHES_PER_GROUP = 6
   
