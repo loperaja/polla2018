@@ -1,17 +1,18 @@
 <%= form_for @polla do |f|  %>
 <%= f.hidden_field :wizard_step, value: f.object.next_step %>
 <div class="container">
-  <div class="row">
-    <div class="col-4">
+  <div class="row justify-content-md-center">
+<hr>
+    <div class="col-lg-4">
       <div class="list-group" id="list-tab" role="tablist"> 
         <% ("A".."H").to_a.each do |group| %>
           <a class="list-group-item list-group-item-action <%= 'active' if group == 'A'%>" id="list-home-list" data-toggle="list" href=<%="#grupo#{group}"%> role="tab" aria-controls="home"><%= "Grupo #{group}"%></a>
         <%end%>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6">
       <div class="tab-content" id="nav-tabContent">
-        <%= f.fields_for :results do |result| %>
+        <%= f.fields_for :results, f.object.results.select{|p| (p.resultable_type == @round.first.class.to_s && @round.map(&:id).include?(p.resultable_id))}.sort_by { |p| p.resultable_id } do |result| %>
 	  <% if(result.index % 4 == 0) %>
             <div class="tab-pane fade show <%= 'active' if result.index == 0%>" id=<%="grupo#{result.object.group}"%> role="tabpanel" aria-labelledby="list-home-list">
 	  <%end%>
@@ -21,7 +22,7 @@
 	      <div class="input-group-prepend">
 	        <%= result.label(:result, position_title(result.object.resultable.name), class: "input-group-text", :style => "width: 200px;")%>
 	      </div>
-	      <%= result.select(:result, result.object.position_teams_options, {include_blank: true}, {class: "custom-select"}) %> 
+	      <%= result.select(:result, result.object.position_teams_options, {include_blank: true}, {class: "custom-select posiciones"}) %> 
 	    </div><br/>
 	  <% if((result.index + 1) % 4 == 0) %>
 	    </div>
@@ -30,8 +31,6 @@
       </div>
     </div>
   </div>
-  </div>
-
-
-  <%= f.submit "Submit" %>
+</div>
+<%= render :partial => 'navigation', locals: {:f => f, :size => 10}%>
 <%end%>

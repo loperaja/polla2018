@@ -1,6 +1,16 @@
+<div class="container">
 <%= form_for @polla do |f|  %>
 <%= f.hidden_field :wizard_step, value: f.object.next_step %>
-  <%= f.fields_for :results do |result| %>
+<%= f.hidden_field :user_id %>
+<%= render 'shared/error_messages', object: f.object %> 
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <%= f.text_field :name, class: "form-control", placeholder: "Nombre/Título de la polla"%>
+    </div>
+  </div>
+</div>
+  <%= f.fields_for :results, f.object.results.select{|p| p.resultable_type == @round.first.class.to_s}.sort_by { |p| p.resultable_id } do |result| %>
     <% if match_row_div(4,result.index) %>
       <div class="row">
     <%end %>
@@ -30,8 +40,11 @@
       </div>
     <% end %>
     <% if match_row_div(4,result.index+1) %>
-    </div><br/>
+    </div><br/><br/>
     <% end %>
   <%end%>
-  <%= f.submit "Submit" %>
+ <br/><br/>
+<%= render :partial => 'navigation', locals: {:f => f, :size => 12}%>
+<br/>
 <%end%>
+</div>
