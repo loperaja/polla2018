@@ -27,7 +27,7 @@
   border: solid #f0efef;
 }
 
-.body {
+body {
   background-color: #f5f7f8;
 }
 
@@ -41,9 +41,27 @@
   box-shadow: 0 1px 6px 0 rgba(117,117,117,.25);
 }
 
-.list-group-item.active {
+.list-group-item.active, .input-group-text {
   background-color: #9d1215;
   color: #b8af67;
   border-color: #b8af67;
   font-weight: bold;
+}
+
+.btn-circle {
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  font-weight: bold;
+  padding: 6px 0;
+  font-size: 35px;
+  line-height: 1.42;
+  border-radius: 45px;
+}
+
+.wizard-active {
+  border: 3px solid #b8af67;
+  background-color: #9d1215;
+  box-shadow: 2px 2px 2px #888888;
+  color: #b8af67;
 }
