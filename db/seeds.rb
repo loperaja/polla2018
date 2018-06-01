@@ -21,10 +21,10 @@ STAGES = {
  "OCTAVOS" => {points: 2, num_teams: 16, step: "octavos"},
  "CUARTOS" => {points: 5, num_teams: 8, step: "cuartos"},
  "SEMIS" => {points: 7, num_teams: 4, step: "semis"},
- "CAMPEON" => {points: 10, num_teams: 1, step: "semis"},
- "SEGUNDO" => {points: 10, num_teams: 1, step: "semis"},
- "TERCERO" => {points: 10, num_teams: 1, step: "semis"},
- "CUARTO" => {points: 10, num_teams: 1, step: "semis"},
+ "CAMPEON" => {points: 10, num_teams: 1, step: "final"},
+ "SEGUNDO" => {points: 10, num_teams: 1, step: "final"},
+ "TERCERO" => {points: 10, num_teams: 1, step: "final"},
+ "CUARTO" => {points: 10, num_teams: 1, step: "final"},
  "GOLEADOR" => {points: 1, num_teams: 1, step: "goleador"},
  "MASGOLEADO" => {points: 1, num_teams: 1, step: "goleador"}
 }
