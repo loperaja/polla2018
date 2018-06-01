@@ -1,1 +1,59 @@
-<%= link_to('Logout', destroy_user_session_path, method: :delete) %>     
+<div class="container"><br/>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+	  Bienvenido
+	</div>
+	<div class="container">
+	  <br/>
+	  <h4>Polloski Rusia 2018<h4>
+	  <hr></hr>
+	  <h5>Recuerde que son $100.000 por polla. Puede hacer tantas como su presupuesto aguante<h5>
+	  <h6>En la lista de pollas puede crear una nueva, editarla o ver la lista de las ya existentes. Me cogió la noche enotnces decidí sacrificar estética en beneficio de lo funcional. Lentamente ire arreglando todos los problemas, agregando nuevas funcionalidades y poniéndola más elegante</h6>
+        </div>
+      </div>
+    </div>
+  </div><br/><br/>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+	  Sus pollas
+	</div>
+	<div class="container">
+	  <br/>
+	  <% if @user_pollas.any?%>
+	    <ul>
+	    <% @user_pollas.each do |polla| %>
+	      <li><%= polla.name %> (<%=link_to "Editar", edit_polla_path(polla)%>)</li>
+	    <% end %>
+	    </ul>
+	  <% else %>
+	    <h5> Aun no ha creado ninguna polla </h5>
+	  <% end %>
+	  <h6><%= link_to "Crear nueva polla", new_polla_path %></h6><br/>
+	</div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+	  Pollas registradas
+	</div>
+	<div class="container">
+	  <br/>
+	  <% if @all_pollas.any?%>
+	    <ul>
+	    <% @all_pollas.each do |polla| %>
+	      <li><%= polla.name %></li>
+	    <% end %>
+	    </ul>
+	  <% else %>
+	    <h5> No hay pollas disponibles aun</h5>
+	  <% end %>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
