@@ -1,0 +1,24 @@
+<%= form_for @polla do |f|  %>
+<%= f.hidden_field :wizard_step, value: f.object.next_step %>
+<%= f.hidden_field :finish, value: true %>
+<div class="container">
+  <div class="row justify-content-md-center">
+  <hr>
+    <div class="col-lg-10">
+      <div class="tab-content" id="nav-tabContent">
+        <%= f.fields_for :results, f.object.results.select{|p| (p.resultable_type == @round.first.class.to_s && @round.map(&:id).include?(p.resultable_id))} do |result| %>
+	  <%= result.hidden_field :resultable_id %>
+	  <%= result.hidden_field :resultable_type %>
+	  <div class="input-group mb-3">
+	    <div class="input-group-prepend">
+	      <%= result.label(:result, result.object.resultable.name.titleize, class: "input-group-text", :style => "width: 200px;")%>
+	    </div>
+	      <%= result.select(:result, Team.all.map{|t| [t.name, t.id]}, {include_blank: true}, {class: "posiciones custom-select"}) %> 
+	  </div><br/>
+	<%end%> 
+      </div>
+    </div>
+  </div>
+</div>
+<%= render :partial => 'navigation', locals: {:f => f, :size => 10}%>
+<%end%>
