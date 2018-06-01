@@ -26,5 +26,13 @@ module PollasHelper
     end
     return row
   end
+  
+  def partial_name
+    (["octavos", "cuartos", "semis"].include? @polla.wizard_step) ? "rondas" : @polla.wizard_step
+  end
+
+  def show_fields?(f)
+    ((@round.map(&:id).include? f.resultable_id) && f.resultable_type == @round.first.class.to_s)
+  end
 
 end
