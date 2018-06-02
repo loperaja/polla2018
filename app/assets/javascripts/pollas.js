@@ -33,3 +33,13 @@ $(document).on( "click", ".btn-wizard", function() {
   }
   window.location.href = href;
 });
+
+$(document).ready(function(){
+  var leftpos = '';
+  $(".btn-wizard").each(function(index){
+    if($(this).hasClass("active")){
+      leftpos = (16.667 * index);
+      $(".f1-progress-line").css("left", leftpos+"%");
+    }
+  });
+});
