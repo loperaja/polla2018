@@ -10,14 +10,7 @@
   </head>
 
   <body>
-    <nav class="navbar sticky-top navbar-light" style="background-color:#50292a">
-      <a class="navbar-brand" href=<%= home_index_path%>>
-        <%= image_tag("polloskiLogo.png", height: 32, width: 94) %>
-      </a>
-      <div class="nav navbar-nav navbar-right">
-        <%= link_to "Salir", signout_path %>
-      </div>
-    </nav>
+      <%= render partial: 'layouts/navbar' %>
     <div class="container-fluid">
       <%= yield %>
     </div>

@@ -1,14 +1,17 @@
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-lg-12" style="padding: 60px;">
         <div class="row">
-	  <% Polla::WIZARD_STEPS.each do |step, number| %>
-	  <div class="col-lg-2 text-center">
-	    <button class="btn btn-wizard  <%= (@polla.wizard_step == step) ? "wizard-active" : "btn-secondary" %> btn-circle" data-step=<%=step%>  data-pollaid=<%=@polla.id%>> <%=number%> </button>
-	    <h4 class="text-center"><%=step.sub("_", " ").titleize%></h4>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="f1-steps">
+            <div class="f1-progress">
+              <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="6" style="width: 16.66%;"></div>
+            </div>
+	    <% Polla::WIZARD_STEPS.each do |step, number| %>
+              <div class="btn-wizard f1-step <%= 'active' if @polla.wizard_step == step %>" data-pollaid="<%=@polla.id%>" data-step="<%=step%>">
+                <div class="f1-step-icon"><%= number %></div>
+                <p><small><%=step.sub("_", " ").titleize%></small></p>
+              </div>
+	    <%end%>
 	  </div>
-	  <%end%>
-	</div>
+        </div>
     </div>
-  </div>
 </div>
