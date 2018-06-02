@@ -66,3 +66,5 @@ gem 'capistrano-bundler'
 
 # if you are using RVM
 gem 'capistrano-rbenv'
+
+gem 'font-awesome-rails'
