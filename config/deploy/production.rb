@@ -17,9 +17,9 @@ server "polloski2018.com", user: "loperaja", roles: %w{app db web}
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{deploy@example.com}, my_property: :my_value
-# role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
-# role :db,  %w{deploy@example.com}
+#role :app, %w{loperaja@51.254.135.109}
+#role :web, %w{loperaja@51.254.135.109}
+#role :db,  %w{loperaja@51.254.135.109}
 
 
 
@@ -59,3 +59,5 @@ server "polloski2018.com", user: "loperaja", roles: %w{app db web}
      auth_methods: %w(publickey password)
      # password: "please use keys"
    }
+
+set :rails_env, :production
