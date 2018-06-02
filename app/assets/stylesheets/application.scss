@@ -1,6 +1,6 @@
 @import "bootstrap";
 .logo-home {
-  background-image: url('polloskiGorba.jpg');
+  background-image: image-url('polloskiGorba.jpg');
   background-size: contain;
   background-color: #000000;
   background-repeat: no-repeat;
@@ -8,7 +8,7 @@
   height: 280px;
 }
 .logo-reg {
-  background-image: url('polloskiLada.jpg');
+  background-image: image-url('polloskiLada.jpg');
   background-size: contain;
   background-color: #c0b99d;
   background-repeat: no-repeat;
@@ -64,4 +64,10 @@ body {
   background-color: #9d1215;
   box-shadow: 2px 2px 2px #888888;
   color: #b8af67;
+}
+
+#elflash {
+  background-color: #9d1215;
+  color: #b8af67;
+  font-weight: bold;
 }
