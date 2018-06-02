@@ -3,12 +3,20 @@ lock "~> 3.10.2"
 
 set :application, "polloski2018"
 set :repo_url, "git@github.com:loperaja/polla2018.git"
+set :rbenv_ruby, '2.4.4'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/home/loperaja/rails/polla2018"
+
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/master.key')
+#set :linked_files, %w{config/database.yml}
+
+# Default value for linked_dirs is []
+set :linked_dirs, fetch(:linked_dirs, []).push('uploads', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -37,3 +45,27 @@ set :repo_url, "git@github.com:loperaja/polla2018.git"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+after "deploy", "deploy:migrate"
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
+end
+
