@@ -37,6 +37,7 @@ class Polla < ApplicationRecord
     round = Round.where(step: previous_step).try(:first)
     if round && ids
       team_ids = Team.all.map(&:id)
+      ids = ids.reject(&:empty?)
       not_selected_ids = team_ids - ids.map(&:to_i)
       self.results.where(result: not_selected_ids, resultable_id: round.id, resultable_type: round.class.to_s).destroy_all
       ids.each do |team_id|
