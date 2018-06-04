@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @all_pollas = Polla.all
+    @pollas = Polla.all
+    @pollas_count = @pollas.count
     @user_pollas = current_user.pollas
   end
 end
