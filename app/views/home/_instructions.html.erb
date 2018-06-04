@@ -1,0 +1,28 @@
+      <p>Haga clic en el botón Nueva polla del menu para empezar a jugar. Puede crear tantas pollas como su bolsillo aguante y editarlas en cualquier momento antes del comienzo del partido inaugural.</p>
+      <h6>Son $100.000 por polla. Contacte a los organizadores para conocer detalles de su pago</h6>
+      <h5>Puntuación</h5>
+      <h6>
+        <ul>
+	  <li><strong>Partidos de la primera ronda:</strong> 1 punto por acierto</li>
+	  <li><strong>Posiciones en los grupos:</strong> 1 punto por acierto</li> 
+	  <li><strong>16 Clasificados a octavos:</strong> 2 puntos por acierto</li> 
+	  <li><strong>8 Clasificados a cuartos:</strong> 5 puntos por acierto</li> 
+	  <li><strong>4 Semifinalistas:</strong> 7 puntos por acierto</li> 
+	  <li><strong>Orden definitivo:</strong> 10 puntos por acierto</li>
+	</ul>
+      </h6>
+      <h5>Premios</h5>
+      <p><strong><%=User.all.count%></strong> usuarios registrados han creado <strong><%=@pollas_count%></strong> pollas
+      recolectando un total de <strong><%= number_to_currency(@pollas_count*100000)%></strong> a ser repartidos de la siguiente manera:
+      <ul>
+        <li>70% para el ganador (<%= number_to_currency(@pollas_count*100000*0.7)%>)</li>
+	<li>20% para el segundo (<%= number_to_currency(@pollas_count*100000*0.2)%>)</li>
+	<li>10% para el tercero (<%= number_to_currency(@pollas_count*100000*0.1)%>)</li> 
+      </ul>
+      Si hay empate en cualquiera de las posiciones, los premios se repartirán de manera proporcional entre el número de personas empatadas de la siguiente manera:
+      <ul>
+	<li>Si al final hay dos personas empatadas con el mayor número de puntos, se repartirá el 90% de lo recolectado entre ellos (70% del primer premio + 20% del segundo). Quien le siga en puntos se llevaría el 10%.</li>
+	<li>Si al ganador le siguen dos o más personas con igual número de puntos, se les entregará el 30% de lo recogido en proporciones iguales (20% del segundo premio + 10% del tercero)</li>
+	<li>Si hay dos o más personas con igual número de puntos en la tercera posición, se les entregará el 10% de lo recogido en proporciones iguales.</li> 
+	<li>Si hay tres o más personas empatadas en el primer lugar, se les entregará el 100% del total en partes iguales.</li>
+      </ul>
