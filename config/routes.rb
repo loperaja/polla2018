@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
   resources :pollas
   resources :results
+  mount ActionCable.server => '/cable'
 end
