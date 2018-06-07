@@ -46,4 +46,8 @@ class Polla < ApplicationRecord
     end
   end
 
+  def progress
+   (100*self.results.count)/112
+  end
+
 end

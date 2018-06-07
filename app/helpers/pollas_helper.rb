@@ -35,4 +35,10 @@ module PollasHelper
     ((@round.map(&:id).include? f.resultable_id) && f.resultable_type == @round.first.class.to_s)
   end
 
+  def progress_bar(p)
+    content_tag :div, class: 'progress' do
+      content_tag(:div, "#{p.progress}%", class: 'progress-bar', role: 'progressbar', aria: {valuenow: p.progress, valuemin: "0", valuemax: "100"}, style: "width: #{p.progress}%; background-color: #50292a;")
+    end
+  end
+
 end
