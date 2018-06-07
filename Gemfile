@@ -68,3 +68,4 @@ gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
 
 gem 'font-awesome-rails'
+gem 'redis' 
