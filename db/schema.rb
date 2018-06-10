@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_165438) do
+ActiveRecord::Schema.define(version: 2018_06_08_130214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.string "author"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "matches", force: :cascade do |t|
     t.integer "home_team_id"
@@ -21,6 +28,8 @@ ActiveRecord::Schema.define(version: 2018_05_29_165438) do
     t.integer "away_team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "added"
+    t.datetime "date"
     t.index ["away_team_id"], name: "index_matches_on_away_team_id"
     t.index ["home_team_id"], name: "index_matches_on_home_team_id"
   end
@@ -33,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_165438) do
     t.datetime "updated_at", null: false
     t.integer "wizard_step", default: 0
     t.integer "last_step", default: 1
+    t.boolean "paid"
     t.index ["user_id"], name: "index_pollas_on_user_id"
   end
 
@@ -54,6 +64,8 @@ ActiveRecord::Schema.define(version: 2018_05_29_165438) do
     t.datetime "updated_at", null: false
     t.integer "num_teams"
     t.string "step"
+    t.boolean "added"
+    t.datetime "date"
     t.index ["step"], name: "index_rounds_on_step"
   end
 
@@ -79,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_165438) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

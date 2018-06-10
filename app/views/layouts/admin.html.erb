@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Polloski 2018 Admin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 border-right" style="padding:0px;">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <%= link_to "Pagos", admin_pollas_path, class: "nav-link light-link #{'active' if params[:controller] == 'admin/pollas'}" %>
+            <%= link_to "Usuarios", admin_users_path, class: "nav-link light-link #{'active' if params[:controller] == 'admin/users'}" %>
+          </div>
+        </div>
+        <div class="col-lg-9">
+         <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
