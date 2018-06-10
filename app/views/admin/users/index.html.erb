@@ -1,0 +1,21 @@
+<div class="container">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Admin?</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+	<td class=<%= user.admin? ? "bg-success" : "bg-danger"%>><span class="text-light"><%= user.admin? ? "Si" : "No"  %></span></td>
+	<td><%= link_to "Admin", admin_user_path(user, admin: !user.admin?), method: :put, data: {:confirm => "Esta seguro?" } %></td>
+      </tr>
+    <%end%>
+    </tbody>
+  </table>
+</div>
+        

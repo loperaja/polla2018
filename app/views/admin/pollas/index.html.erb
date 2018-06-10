@@ -1,0 +1,23 @@
+<div class="container">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Polla</th>
+        <th>Pagó?</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @pollas.each do |polla| %>
+      <tr>
+        <td><%= polla.user.email %></td>
+	<td><%= polla.name %></td>
+	<td class=<%= polla.paid? ? "bg-success" : "bg-danger"%>><span class="text-light"><%= polla.paid? ? "Si" : "No"  %></span></td>
+	<td><%= link_to "Pagó", admin_polla_path(polla, paid: !polla.paid?), method: :put, data: {:confirm => "Esta seguro?" } %></td>
+      </tr>
+    <%end%>
+    </tbody>
+  </table>
+</div>
+        
