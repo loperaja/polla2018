@@ -24,11 +24,15 @@ $(document).ready(function() {
       var $this, textarea;
       $this = $(this);
       textarea = $this.find('#chat_message');
-      author = $this.find('#chat_author').val();
-      if ($.trim(textarea.val()).length > 1) {
-        App.global_chat.send_message(textarea.val(), author);
-        textarea.val('');
-       }
+      if(textarea.val() != "") {
+        author = $this.find('#chat_author').val();
+        if ($.trim(textarea.val()).length > 1) {
+          App.global_chat.send_message(textarea.val(), author);
+          textarea.val('');
+         }
+      } else {
+        alert("Debe incluir un mensaje");
+      }
        e.preventDefault();
        return false;
     });
