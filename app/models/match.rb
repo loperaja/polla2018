@@ -27,6 +27,10 @@ class Match < ApplicationRecord
   def title
     "#{home_team_name} vs #{away_team_name}"
   end
+ 
+  def name
+    title
+  end
 
 
 end
