@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_08_130214) do
+ActiveRecord::Schema.define(version: 2018_06_12_111309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,15 +34,26 @@ ActiveRecord::Schema.define(version: 2018_06_08_130214) do
     t.index ["home_team_id"], name: "index_matches_on_home_team_id"
   end
 
+  create_table "point_histories", force: :cascade do |t|
+    t.integer "polla_id"
+    t.integer "result_id"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["polla_id"], name: "index_point_histories_on_polla_id"
+    t.index ["result_id"], name: "index_point_histories_on_result_id"
+  end
+
   create_table "pollas", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
-    t.integer "points"
+    t.integer "points", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wizard_step", default: 0
     t.integer "last_step", default: 1
     t.boolean "paid"
+    t.boolean "real", default: false
     t.index ["user_id"], name: "index_pollas_on_user_id"
   end
 
@@ -54,6 +65,7 @@ ActiveRecord::Schema.define(version: 2018_06_08_130214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "polla_id"
+    t.boolean "added", default: false
     t.index ["polla_id"], name: "index_results_on_polla_id"
   end
 
