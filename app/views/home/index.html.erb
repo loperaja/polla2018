@@ -1,57 +1,22 @@
-<div class="container"><br/>
-  <div class="row">
-    
-    <div class="col-lg-6">
-      <div class="mainlogo"></div>
-      <button type="button" class="btn btn-new-polla" data-toggle="modal" data-target="#modalInstructions">
-        Ver instrucciones y premios
-      </button>
-    </div>
-    <div class="col-lg-6 border-left">
-      <div class="card chatcard">
-        <div id="messages" class="container">
-          <%= render @messages %>
-        </div>
-       </div>
-        <hr>
-        <%= form_for @message, url: '#' do |f| %>
-          <div class="form-group">
-            <%= f.text_field :author, placeholder: 'Su alias', class: 'form-control form-control-sm' %>
-            <%= f.text_area :message, size: 2, placeholder: 'Mensaje', class: 'form-control' %>
-          </div>
-          <%= f.submit "Enviar", class: 'btn btn-new-polla' %>
-        <% end %>
+<br/><br/>
+<div class="row">
+  <%= render partial: 'pollas_list' %>
+  <div class="col-lg-6 border-left">
+    <div class="card chatcard">
+      <div id="messages" class="container">
+        <%= render @messages %>
       </div>
     </div>
-  </div><br/><br/>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-header">
-	  Pollas registradas
-	</div>
-	<div class="container">
-	  <br/>
-	  <% if @pollas.any?%>
-	    <% @pollas.each do |polla| %>
-	      <div class="row">
-	        <div class="col-lg-5">
-	          <%= polla.name %>
-		 </div>
-		 <div class="col-lg-7">
-		   <%=progress_bar(polla) %>
-		 </div>
-	       </div>
-	    <% end %>
-	  <% else %>
-	    <h5> No hay pollas disponibles aun</h5>
-	  <% end %>
-	</div>
-      </div>
+    <hr>
+    <%= form_for @message, url: '#' do |f| %>
+    <div class="form-group">
+      <%= f.text_field :author, placeholder: 'Su alias', class: 'form-control form-control-sm' %>
+      <%= f.text_area :message, size: 2, placeholder: 'Mensaje', class: 'form-control' %>
     </div>
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-header">
+    <%= f.submit "Enviar", class: 'btn btn-new-polla' %>
+    <% end %><br/>
+    <div class="card">
+      <div class="card-header">
 	  Sus pollas
 	</div>
 	<div class="container">
@@ -75,7 +40,7 @@
       </div>
     </div>
   </div>
-</div>
+</div><br/>
 <div class="modal fade" id="modalInstructions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
