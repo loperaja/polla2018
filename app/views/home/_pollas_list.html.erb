@@ -1,0 +1,36 @@
+<div class="col-lg-6">
+  <div class="card">
+    <div class="card-header">
+       Posiciones
+    </div>
+    <div class="container">
+    <br/>
+    <div class="mainlogo"></div>
+    <button type="button" class="btn btn-new-polla" data-toggle="modal" data-target="#modalInstructions">
+        Ver instrucciones y premios
+    </button><br/><br/>
+    <% if @pollas.any?%>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>% completa</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @pollas.each do |polla| %>
+          <tr>
+             <td><%= polla.name %></td>
+             <td><%=progress_bar(polla) %></td>
+             <td><%= polla.points.to_i %></td>
+          </tr>
+        <%end%>
+        </tbody>
+      </table>
+      <% else %>
+        <h5> No hay pollas disponibles aun</h5>
+      <% end %>
+    </div>
+  </div>
+</div>
