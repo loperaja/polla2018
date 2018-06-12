@@ -2,6 +2,7 @@ class PollasController < ApplicationController
   before_action :set_polla, :only => [:edit, :update]
   before_action :user_polla_validation, :except => [:new, :create]
   before_action :set_wizard_step, :only => [:edit]
+  before_action :check_time, only: [:new, :edit, :create, :update]
 
   def new
     @polla = current_user.pollas.new
@@ -36,6 +37,16 @@ class PollasController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def show
+    @polla = Polla.find(params[:id])
+  end
+
+  def destroy
+    Polla.find(params[:id]).destroy
+    flash[:notice] = "Polla eliminada" 
+    redirect_to home_index_path
   end
 
   private
@@ -76,6 +87,14 @@ class PollasController < ApplicationController
     case  @polla.wizard_step
     when "primera_fase", "posiciones", "final"
       @round.each{|r| @polla.results.find_or_initialize_by(resultable_id: r.id, resultable_type: r.class.to_s)}
+    end
+  end
+
+  def check_time
+    first_match_time = Time.parse("Jun 14, 2018 3:00 PM UTC")
+    if Time.zone.now > first_match_time
+      flash[:notice] = "Se le acabó el tiempo!"
+      redirect_to home_index_path
     end
   end
 
