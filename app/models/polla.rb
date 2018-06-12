@@ -1,7 +1,9 @@
 class Polla < ApplicationRecord
   has_many :results, :dependent => :destroy
+  has_many :point_histories, :dependent => :destroy
   belongs_to :user
   validates_presence_of :wizard_step, :name
+  after_save :add_points, if: :real?
   
   accepts_nested_attributes_for :results, allow_destroy: true
 
@@ -47,7 +49,38 @@ class Polla < ApplicationRecord
   end
 
   def progress
-   (100*self.results.count)/112
+   (100*self.results.where("result IS NOT ?", nil).count)/112
   end
+
+  def points_report
+    report_str = ''
+    point_histories.order('points ASC').each do |h|
+      report_str+="#{h.result.resultable.name} puso #{(h.result.result == 0) ? "Empate" : Team.find(h.result.result).name} y quedo con #{h.points} puntos "
+    end
+    return report_str
+  end
+
+  private
+
+  def add_points
+    self.results.where('result is NOT ? AND added = ?', nil, false).each do |result|
+      aciertos = Result.where(
+       :resultable_id => result.resultable_id,
+       :resultable_type => result.resultable_type,
+       :added => false,
+       :result => result.result
+      )
+      aciertos = aciertos.select{|a| a !=result}
+      aciertos.each do |acierto|
+        acierto.update_attributes(added: true)
+        polla = acierto.polla
+	added_points = (acierto.resultable_type == "Match") ? 1 : acierto.resultable.points
+	points = polla.points.to_i + added_points
+	polla.update_attributes(points: points) unless polla.real?
+        PointHistory.create!(polla_id: polla.id, result_id: result.id, points: points)
+     end
+     result.update_attributes(added: true)
+   end
+ end
 
 end
