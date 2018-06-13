@@ -1,4 +1,4 @@
-jQuery(document).on('turbolinks:load', function() {
+/*jQuery(document).on('turbolinks:load', function() {
 //$(document).ready(function() {
   var messages;
   messages = $('#messages');
@@ -37,4 +37,4 @@ jQuery(document).on('turbolinks:load', function() {
        return false;
     });
   }
-});
+});*/

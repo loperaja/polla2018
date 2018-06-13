@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :pollas
   resources :results
-  mount ActionCable.server => '/cable'
+#  mount ActionCable.server => '/cable'
  
   namespace :admin do
     root 'pollas#index' 
