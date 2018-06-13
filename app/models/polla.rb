@@ -41,7 +41,8 @@ class Polla < ApplicationRecord
       team_ids = Team.all.map(&:id)
       ids = ids.reject(&:empty?)
       not_selected_ids = team_ids - ids.map(&:to_i)
-      self.results.where(result: not_selected_ids, resultable_id: round.id, resultable_type: round.class.to_s).destroy_all
+      sql = "DELETE FROM results WHERE polla_id = #{self.id} AND resultable_id = #{round.id} AND resultable_type = '#{round.class.to_s}' AND result IN (#{not_selected_ids.join(',')})"
+      ActiveRecord::Base.connection.execute(sql)
       ids.each do |team_id|
         self.results.find_or_initialize_by(resultable_id: round.id, resultable_type: round.class.to_s, result: team_id.to_i)
       end
