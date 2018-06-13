@@ -1,5 +1,5 @@
-//jQuery(document).on('turbolinks:load', function() {
-$(document).ready(function() {
+jQuery(document).on('turbolinks:load', function() {
+//$(document).ready(function() {
   var messages;
   messages = $('#messages');
   $(".chatcard").scrollTop($(".chatcard").prop("scrollHeight"));
