@@ -92,7 +92,7 @@ class PollasController < ApplicationController
 
   def check_time
     first_match_time = Time.parse("Jun 14, 2018 3:00 PM UTC")
-    if (Time.zone.now > first_match_time) && !@polla.real? && !@polla.name = "MrChrimes"
+    if (Time.zone.now > first_match_time) || !@polla.real?
       flash[:notice] = "Se le acabó el tiempo!"
       redirect_to home_index_path
     end
