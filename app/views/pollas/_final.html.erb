@@ -13,7 +13,11 @@
 	    <div class="input-group-prepend">
 	      <%= result.label(:result, result.object.resultable.name.titleize, class: "input-group-text", :style => "width: 200px;")%>
 	    </div>
-	      <%= result.select(:result, Team.all.map{|t| [t.name, t.id]}, {include_blank: true}, {class: "posiciones custom-select", disabled: @polla.disabled?}) %> 
+              <% if @polla.disabled? %>
+	          <%= result.text_field :team, class: "form-control", disabled: @polla.disabled? %>
+              <%else%>
+	        <%= result.select(:result, Team.all.map{|t| [t.name, t.id]}, {include_blank: true}, {class: "posiciones custom-select", disabled: @polla.disabled?}) %> 
+              <% end %>
 	  </div><br/>
 	<%end%> 
       </div>

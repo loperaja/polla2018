@@ -30,7 +30,11 @@
 	      <%= result.hidden_field :resultable_id %>
 	      <%= result.hidden_field :resultable_type %>
 	      <div class="form-group">
-	        <%= result.select :result, result.object.resultable.result_options, {}, class: "form-control", disabled: @polla.disabled? %>
+                <% if @polla.disabled? %>
+	          <%= result.text_field :team, class: "form-control", disabled: @polla.disabled? %>
+                <% else %>
+	          <%= result.select :result, result.object.resultable.result_options, {}, class: "form-control", disabled: @polla.disabled? %>
+                <% end %>
 	      </div>
 	    </div>
 	  </div>

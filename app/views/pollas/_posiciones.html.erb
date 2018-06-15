@@ -22,7 +22,11 @@
 	      <div class="input-group-prepend">
 	        <%= result.label(:result, position_title(result.object.resultable.name), class: "input-group-text", :style => "width: 200px;")%>
 	      </div>
-	      <%= result.select(:result, result.object.position_teams_options, {include_blank: true}, {class: "custom-select posiciones", disabled: @polla.disabled?}) %> 
+              <% if @polla.disabled? %>
+	          <%= result.text_field :team, class: "form-control", disabled: @polla.disabled? %>
+              <% else %>
+	        <%= result.select(:result, result.object.position_teams_options, {include_blank: true}, {class: "custom-select posiciones", disabled: @polla.disabled?}) %> 
+              <% end %>
 	    </div><br/>
 	  <% if((result.index + 1) % 4 == 0) %>
 	    </div>
