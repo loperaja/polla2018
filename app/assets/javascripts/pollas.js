@@ -34,7 +34,7 @@ $(document).on( "click", ".btn-wizard", function() {
   window.location.href = href;
 });
 
-$(document).ready(function(){
+jQuery(document).on('turbolinks:load', function() {
   var leftpos = '';
   $(".btn-wizard").each(function(index){
     if($(this).hasClass("active")){
