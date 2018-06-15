@@ -22,7 +22,7 @@ $(document).on( "change", ".posiciones", function() {
   }
 });
 
-$(document).on( "click", ".btn-wizard", function() {
+$(document).on( "click touchstart", ".btn-wizard", function() {
   var href = '';
   var pollaid = $(this).data('pollaid');
   var step = $(this).data('step');
