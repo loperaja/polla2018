@@ -7,12 +7,12 @@
     <br/>
     <div class="mainlogo"></div>
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-6 col-md-12 col-sm-12">
         <button type="button" class="btn btn-new-polla" data-toggle="modal" data-target="#modalInstructions">
-          Ver instrucciones y premios
+          Mostrar Premios
         </button>
       </div>
-      <div class="col-lg-6"> 
+      <div class="col-lg-6 col-md-12 col-sm-12"> 
         <div class="row"> 
           <div class="col-lg-12 float-right">
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="float-right">
@@ -36,7 +36,6 @@
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>% completa</th>
             <th>Puntos</th>
           </tr>
         </thead>
@@ -44,7 +43,6 @@
         <% @pollas.each do |polla| %>
           <tr>
              <td><%= polla.name %></td>
-             <td><%=progress_bar(polla) %></td>
              <td><%= polla.points.to_i %></td>
           </tr>
         <%end%>
