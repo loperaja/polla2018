@@ -30,7 +30,7 @@
 	      <%= result.hidden_field :resultable_id %>
 	      <%= result.hidden_field :resultable_type %>
 	      <div class="form-group">
-	        <%= result.select :result, result.object.resultable.result_options, {}, class: "form-control" %>
+	        <%= result.select :result, result.object.resultable.result_options, {}, class: "form-control", disabled: @polla.disabled? %>
 	      </div>
 	    </div>
 	  </div>
@@ -44,7 +44,7 @@
     <% end %>
   <%end%>
  <br/><br/>
-<%= render :partial => 'navigation', locals: {:f => f, :size => 12}%>
+<%= render :partial => 'navigation', locals: {:f => f, :size => 12} unless @polla.disabled?%>
 <br/>
 <%end%>
 </div>
