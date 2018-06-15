@@ -27,8 +27,12 @@
        <% @user_pollas.each do |polla| %>
          <tr>
            <td><%= polla.name %></td> 
-           <td><%= progress_bar(polla) %></td> 
-           <td><%=link_to "Editar", edit_polla_path(polla)%></td>
+           <td><%= progress_bar(polla) %></td>
+           <% if polla.real? %>
+             <td><%=link_to "Editar", edit_polla_path(polla)%></td>
+           <% else %>
+             <td><%=link_to "Mostrar resultados", edit_polla_path(polla, step: "primera_fase")%></td>
+           <% end %>
          </tr>
        <% end %>
        </tbody>
