@@ -61,6 +61,10 @@ class Polla < ApplicationRecord
     return report_str
   end
 
+  def disabled?
+    (Time.zone.now > Time.parse("Jun 14, 2018 3:00 PM UTC")) && !real?
+  end
+
   private
 
   def add_points
