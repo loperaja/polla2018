@@ -21,6 +21,10 @@ class Result < ApplicationRecord
   def position_teams_options
     Team.where(group: group).map{|team| [team.name, team.id]}
   end
+
+  def team
+    ((result == 0) ? "Empate" : Team.find(result).name) if result
+  end
     
 
 
