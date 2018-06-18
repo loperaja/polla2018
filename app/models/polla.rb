@@ -82,7 +82,7 @@ class Polla < ApplicationRecord
 	added_points = (acierto.resultable_type == "Match") ? 1 : acierto.resultable.points
 	points = polla.points.to_i + added_points
 	polla.update_attributes(points: points) unless polla.real?
-        PointHistory.create!(polla_id: polla.id, result_id: result.id, points: points)
+        PointHistory.create!(polla_id: polla.id, result_id: result.id, points: points, points_awarded: added_points)
      end
      result.update_attributes(added: true)
    end
