@@ -5,34 +5,35 @@
     </div>
     <div class="container">
     <br/>
-    <div class="mainlogo"></div>
-    <div class="row">
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <button type="button" class="btn btn-new-polla" data-toggle="modal" data-target="#modalInstructions">
-          Mostrar Premios
-        </button>
-      </div>
-      <div class="col-lg-6 col-md-12 col-sm-12"> 
-        <div class="row"> 
-          <div class="col-lg-12 float-right">
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="float-right">
-              <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="ZKXKZXCED667A">
-              <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-              <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-            </form>
+      <div class="mainlogo"></div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <button type="button" class="btn btn-new-polla" data-toggle="modal" data-target="#modalInstructions">
+            Mostrar Premios
+          </button>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12"> 
+          <div class="row"> 
+            <div class="col-lg-12 float-right">
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="float-right">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="ZKXKZXCED667A">
+                <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+              </form>
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="col-lg-12 float-right">
+              <small class="float-right">Dominio y servidor no se pagan solos</small><br/>
+            </div>
           </div>
         </div>
-        <div class="row"> 
-          <div class="col-lg-12 float-right">
-            <small class="float-right">Dominio y servidor no se pagan solos</small><br/>
-          </div>
-        </div>
-      </div>
-    </div><br/><br/>
+      </div><br/><br/>
 
     <% if @pollas.any?%>
-      <table class="table">
+      <div class="table-responsive">
+      <table class="table table-sm">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -52,6 +53,7 @@
         <%end%>
         </tbody>
       </table>
+      </div>
       <% else %>
         <h5> No hay pollas disponibles aun</h5>
       <% end %>
