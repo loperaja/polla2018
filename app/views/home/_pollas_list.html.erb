@@ -36,7 +36,7 @@
       <table class="table table-sm">
         <thead>
           <tr>
-            <th>Nombre</th>
+            <th style="max-width:50px;">Nombre</th>
             <th>Puntos ayer</th>
             <th>Puntos hoy</th>
             <th>Puntos</th>
@@ -45,7 +45,7 @@
         <tbody>
         <% @pollas.each do |polla| %>
           <tr>
-             <td><%= polla.name %></td>
+             <td style="max-width:60px;"><%= polla.name %></td>
              <td><%= @yesterday_points[polla.id] || 0 %></td>
              <td><%= @today_points[polla.id] || 0 %></td>
              <td><%= polla.points.to_i %></td>
