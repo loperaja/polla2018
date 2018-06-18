@@ -10,4 +10,8 @@ class ChatsChannel < ApplicationCable::Channel
   def send_message(data)
     Chat.create!(message: data['message'], author: data['author'])
   end
+
+  def show_status(data)
+    ChatNotificationBroadcastJob.perform_later(data['uid'])
+  end
 end
