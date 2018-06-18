@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_111309) do
+ActiveRecord::Schema.define(version: 2018_06_18_103708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_06_12_111309) do
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_awarded"
     t.index ["polla_id"], name: "index_point_histories_on_polla_id"
     t.index ["result_id"], name: "index_point_histories_on_result_id"
   end
