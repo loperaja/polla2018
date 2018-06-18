@@ -36,6 +36,8 @@
         <thead>
           <tr>
             <th>Nombre</th>
+            <th>Puntos ayer</th>
+            <th>Puntos hoy</th>
             <th>Puntos</th>
           </tr>
         </thead>
@@ -43,6 +45,8 @@
         <% @pollas.each do |polla| %>
           <tr>
              <td><%= polla.name %></td>
+             <td><%= @yesterday_points[polla.id] || 0 %></td>
+             <td><%= @today_points[polla.id] || 0 %></td>
              <td><%= polla.points.to_i %></td>
           </tr>
         <%end%>
