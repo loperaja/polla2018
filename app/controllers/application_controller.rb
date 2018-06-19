@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  config.time_zone = "UTC"
+  around_action :set_time_zone, if: :current_user
   before_action :authenticate_user!
   layout :layout_by_resource
 
@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     else
       "application"
     end
+  end
+
+  def set_time_zone(&block)
+    Time.use_zone(current_user.timezone, &block)
   end
 
 end
