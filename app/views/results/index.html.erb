@@ -1,0 +1,78 @@
+<br/>
+<div class="row">
+  <div class="container-fluid">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          Lista de resultados 
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm table-striped">
+            <thead>
+              <tr>
+                <th>Polla</th>
+                <% @matches.each do |match| %>
+                  <th><%= match.name %></th>
+                <% end %>
+                <% @group_pos.each do |pos| %>
+                  <th><%= pos.name %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <% @results.each do |polla, result| %>
+                <tr>
+                  <td><%= polla %></td>
+                  <% @matches.each do |match| %>
+                    <td> <%= result[match.class.to_s][match.name].join('') %></td>
+                  <%end%>
+                  <% @group_pos.each do |pow| %>
+                    <td> <%= result.try(:[], pow.class.to_s).try(:[], pow.name).try(:join, ',')%></td>
+                  <%end%>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><br/><br/>
+<div class="row">
+<div class="container-fluid">
+<div class="col-lg-12">
+  <div class="card">
+    <br/><br/>
+    <div class="card-header">
+      Rondas finales
+    </div>
+    <div class="table-responsive">
+    <table class="table table-bordered table-sm table-striped">
+      <thead>
+        <tr>
+          <th>Polla</th>
+        <% @rounds.each do |round| %>
+          <% round.num_teams.times do |n| %>
+            <th><%= "#{round.name[0..2]}#{n+1}" %></th>
+          <%end%>
+        <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% @results.each do |polla, result| %>
+        <tr>
+          <td><%= polla %></td>
+          <% @rounds.each do |round| %>
+            <% round.num_teams.times do |n| %>
+              <td> <%= result.try(:[], round.class.to_s).try(:[], round.name).try(:[],n) %></td>
+            <%end%>
+          <%end%>
+         </tr>
+       <%end%>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>
