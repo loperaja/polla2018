@@ -24,10 +24,20 @@
                 <tr>
                   <td><%= polla %></td>
                   <% @matches.each do |match| %>
-                    <td> <%= result[match.class.to_s][match.name].join('') %></td>
+                    <% if @real.try(:[], match.class.to_s).try(:[], match.name) == result[match.class.to_s][match.name] %>
+                      <td class="bg-warning">
+                    <% else %>
+                      <td>
+                    <%end%>
+                    <%= result[match.class.to_s][match.name].join('') %></td>
                   <%end%>
                   <% @group_pos.each do |pow| %>
-                    <td> <%= result.try(:[], pow.class.to_s).try(:[], pow.name).try(:join, ',')%></td>
+                    <% if @real.try(:[], pow.class.to_s).try(:[], pow.name) == result.try(:[], pow.class.to_s).try(:[], pow.name) %>
+                      <td class="bg-warning">
+                    <% else %>
+                      <td>
+                    <%end%>
+                      <%= result.try(:[], pow.class.to_s).try(:[], pow.name).try(:join, ',')%></td>
                   <%end%>
                 </tr>
               <%end%>
@@ -64,7 +74,11 @@
           <td><%= polla %></td>
           <% @rounds.each do |round| %>
             <% round.num_teams.times do |n| %>
-              <td> <%= result.try(:[], round.class.to_s).try(:[], round.name).try(:[],n) %></td>
+              <% if @real.try(:[], round.class.to_s).try(:[], round.name).to_a.include? result.try(:[], round.class.to_s).try(:[], round.name).try(:[],n) %>
+              <td class="bg-warning">
+              <%else%>
+              <td>
+              <%end%> <%= result.try(:[], round.class.to_s).try(:[], round.name).try(:[],n) %></td>
             <%end%>
           <%end%>
          </tr>
