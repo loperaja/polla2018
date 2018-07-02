@@ -7,11 +7,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <% unless (Time.zone.now > Time.parse("Jun 14, 2018 3:00 PM UTC")) %> 
       <li class="nav-item">
-        <%= link_to "Nueva polla", new_polla_path, :class => "btn btn-new-polla nav-link navlink" %>
+        <%= link_to "Tabla de resultados", results_path, :class => "btn btn-new-polla nav-link navlink" %>
       </li>
-    <% end %>
     </ul>
     <div class="nav navbar-nav navbar-right nav-item dropdown">
       <a class="nav-link dropdown-toggle navlink" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= fa_icon "user"%> <%= current_user.email %></a>
